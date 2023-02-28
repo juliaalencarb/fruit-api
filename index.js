@@ -60,10 +60,12 @@
 require('dotenv').config(); // to have access to .env variables, should be at the top to variables are accessbible to everything on this file
 
 const express = require('express');
+const cors = require('cors'); // another middleware
 const app = express(); // caseSensitive: false;
 const port = process.env.PORT;
 const fruits = require('./fruits.json')
 
+app.use(cors()); // this will avoid connection problem between client and server
 app.use(express.json()) //middleware -> it will take the body json file and transform it into js, happens between the request and response
 
 // Home route
