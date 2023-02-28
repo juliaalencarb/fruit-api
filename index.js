@@ -107,7 +107,7 @@ app.get('/fruits/:name', (req, res) => {
 
 app.post("/fruits", (req, res) => {
     // check if the fruit is in the data or not
-    const fruit = fruits.find((fruit) => fruit.name == req.body.name)
+    const fruit = fruits.find((fruit) => fruit.name.toLowerCase() == req.body.name.toLowerCase())
     console.log(fruit) // it's undefined since fruit is found
     // res.send("hello")
     if (fruit != undefined) {
