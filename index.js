@@ -81,27 +81,28 @@ app.get('/fruits', (req, res) => {
 // Return a single fruit route
 // error hadling (if fruit is not found)
 // fruit with no capital letters
-app.get('/fruits/:fruit', (req, res) => {
-    let userFruit = req.params.fruit
-    if (userFruit !== `${userFruit[0].toUpperCase()}${userFruit.slice(1).toLowerCase()}`) {
-        userFruit = `${userFruit[0].toUpperCase()}${userFruit.slice(1).toLowerCase()}`
-    }
-    // const fruit = fruits.find((fruit) => fruit.name.toLowerCase() === name);
-    // if (fruit === undefined) {
-    //     res.status(404).send()
+app.get('/fruits/:name', (req, res) => {
+    // let userFruit = req.params.fruit
+    // if (userFruit !== `${userFruit[0].toUpperCase()}${userFruit.slice(1).toLowerCase()}`) {
+    //     userFruit = `${userFruit[0].toUpperCase()}${userFruit.slice(1).toLowerCase()}`
     // }
-    //else {
-    ///    res.status(200).send()
-    //}
+    const name = req.params.name.toLowerCase()
+    const fruit = fruits.find((fruit) => fruit.name.toLowerCase() === name);
+    if (fruit === undefined) {
+        res.status(404).send()
+    }
+    else {
+        res.status(200).send(fruit)
+    }
     // res.send(userFruit)
-    fruits.forEach(el => {
-        if (el.name === userFruit) {
-            res.status(200).send(el)
-        }
-        else {
-            res.status(404).send("Invalid fruit.")
-        }
-    })
+    // fruits.forEach(el => {
+    //     if (el.name === userFruit) {
+    //         return res.status(200).send(el)
+    //     }
+    //     else {
+    //         return res.status(404).send("Invalid fruit.")
+    //     }
+    // })
     })
 
 app.post("/fruits", (req, res) => {
